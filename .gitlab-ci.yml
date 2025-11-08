@@ -10,9 +10,16 @@ build-and-push:
   services:
     - docker:24.0.5-dind
   before_script:
-    # Login al GitLab Container Registry
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATEg_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+
   script:
+    - git clone git@gitlab.com:usuario/repositorio-private.git
+
     # Build y push de Angular
     - docker build -t $CI_REGISTRY_IMAGE/angular-frontend:latest ./angular
     - docker push $CI_REGISTRY_IMAGE/angular-frontend:latest
