@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+  namespace: leafnoise
+spec:
+  selector:
+    app: flask
+  ports:
+    - protocol: TCP
+      port: 6969
+      targetPort: 6969
+  type: NodePort

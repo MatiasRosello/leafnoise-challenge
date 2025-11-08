@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-deployment
+  namespace: leafnoise
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flask
+  template:
+    metadata:
+      labels:
+        app: flask
+    spec:
+      containers:
+      - name: flask
+        image: mrosello/leafnoise_flask:1.0.0
+        ports:
+        - containerPort: 6969
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 6969
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 6969
+          initialDelaySeconds: 15
+          periodSeconds: 20
