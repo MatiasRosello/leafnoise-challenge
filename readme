@@ -1,1 +1,13 @@
-TEST
+docker abierto
+ejecutar docker compose up -d desde la carpeta raiz para levantar los servicios
+entrar a:
+http://localhost:8000/ -> angular
+http://localhost:6969/ -> flask
+
+para levantar kubernetes ejecutar dentro de la carpeta de k8s:
+kubectl apply -f k8s/namespace.yaml
+kubectl apply -f k8s/angular-deployment.yaml
+kubectl apply -f k8s/angular-service.yaml
+kubectl apply -f k8s/flask-deployment.yaml
+kubectl apply -f k8s/flask-service.yaml
+
