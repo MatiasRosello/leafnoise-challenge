@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  angular-frontend:
+    image: registry.gitlab.com/usuario/proyecto/angular-frontend:latest
+    ports:
+      - "8000:80"  # Nginx en contenedor sirve Angular en puerto 80
+    restart: always
+
+  flask-backend:
+    image: registry.gitlab.com/usuario/proyecto/flask-backend:latest
+    ports:
+      - "6969:6969"  # Flask puerto definido en Dockerfile
+    environment:
+      - PORT=6969
+    restart: always
