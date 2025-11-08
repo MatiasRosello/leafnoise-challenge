@@ -18,7 +18,7 @@ build-and-push:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
 
   script:
-    - git clone git@gitlab.com:usuario/repositorio-private.git
+    - git clone git@gitlab.com:matias.nahuel.rosello-group/matias.nahuel.rosello-project.git
 
     # Build y push de Angular
     - docker build -t $CI_REGISTRY_IMAGE/angular-frontend:latest ./angular
