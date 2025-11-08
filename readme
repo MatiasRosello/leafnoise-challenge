@@ -4,6 +4,15 @@ entrar a:
 http://localhost:8000/ -> angular
 http://localhost:6969/ -> flask
 
+Si quieren levantar los servicios individualmente/localmente:
+Entrar a "angular" y ejecutar:
+docker build -t angular:latest .
+docker run -p 8000:80 angular:latest -d
+
+Entrar a "flask" y ejecutar:
+docker build -t flask:latest .
+docker run -p 6969:6969 flask:latest -d
+
 para levantar kubernetes ejecutar dentro de la carpeta de k8s:
 kubectl apply -f k8s/namespace.yaml
 kubectl apply -f k8s/angular-deployment.yaml
